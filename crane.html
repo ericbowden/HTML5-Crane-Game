@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Crane game</title>
+	<link rel="stylesheet" type="text/css" href="page.css" />
+  	<script src="./jquery.js"></script>
+	<script src="./Crane.js"></script>
+	<script src="./Prize.js"></script>
+	<script src="./main.js"></script>	
+	</head>
+	<body>
+	
+		<div id='game' style='position: relative;'>
+			<div id="background"></div>
+			
+			<div id="crane">
+				<div id="crane-handle-top"></div>
+				<div id="crane-handle-bottom"></div>
+				
+				<div id="crane-claw"></div>
+				<div id="crane-center"></div>
+			</div>
+			
+			<div id="grayorbs-chute"></div>
+			
+			<div id="foreground"></div>				
+			
+		</div>
+		
+		<div style='position: absolute; top: 550px'>Arrow keys to move, space to grab.
+			<br>Pixels off: <span id='debug-errorpx'></span>
+			<br>Chance to win: <span id='debug-errordrop'></span>
+		</div>
+	</body>
+</html>
