@@ -44,7 +44,8 @@ function Prize(id,css, crane) {
 		var tmp = Math.floor(Math.random()*100);
 		//console.log(tmp,error);
 		if(tmp>error) {
-			setTimeout(function(){state='falling';},4*error+300);			
+			setTimeout(function(){state='falling';},4*error+300);
+			$('#debug-streak').html(0); //reset streak		
 			//console.log('error',100+error*10);
 		 } 
 		 
@@ -96,6 +97,9 @@ function Prize(id,css, crane) {
 		if(state=='won' && top > 460) {
 			$('#prize'+id).remove();//css({visibility:'hidden'});
 			state='hidden';
+			
+			$('#debug-streak').html(parseInt($('#debug-streak').html())+1); //inc streak
+			
 			//spawn new prize
 			setTimeout(function(){
 				prizes[prizes.length] = new Prize(prizes.length,{top: Math.ceil(Math.random()*100),left: original_left},crane);}
