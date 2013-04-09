@@ -62,7 +62,7 @@ $(window).blur(function() {
 $(document).ready(function(){ //main function
 	
 	for(var i = 0; i< 5; i++)
-		prizes[i] = new Prize(i,{top: 347,left: 400+i*100-Math.ceil(Math.random()*50)},crane);
+		prizes[i] = new Prize(i,{top: Math.ceil(Math.random()*100),left: 400+i*100-Math.ceil(Math.random()*50)},crane);
 	
 	//crane.Repaint();
 	animate();

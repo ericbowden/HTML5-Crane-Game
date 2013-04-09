@@ -1,9 +1,10 @@
 function Prize(id,css, crane) {
-    var top = css['top'];
+    var top = css['top'];  
     var left = css['left'];
+    var original_left = css['left'];
 	hspd = 15;
 	vspd = 5;
-	var state = 'resting';
+	var state = 'falling';
 	var error;
 
 	var rand = Math.floor(Math.random()*10);
@@ -43,8 +44,8 @@ function Prize(id,css, crane) {
 		var tmp = Math.floor(Math.random()*100);
 		//console.log(tmp,error);
 		if(tmp>error) {
-			setTimeout(function(){state='falling';},1000+error*10);			
-			//console.log('error',1000+error*10);
+			setTimeout(function(){state='falling';},4*error+300);			
+			//console.log('error',100+error*10);
 		 } 
 		 
 		state = 'is grabbed';
@@ -57,17 +58,17 @@ function Prize(id,css, crane) {
 			top = 347;	
 			
 		left = crane.GetLeft()+23;
-		if(left <= 53) {
-			left = 53;
+		if(left <= 60) {
+			left = 60;
 			state = 'won';
 		} 
 	};
 	
+	this.GetError = function(offset) {
+		return Math.floor(160/(.1*offset+1)-60);
+	};
+	
 	this.Update = function () {
-		//console.log(left);
-		//if(keys[37]) //leftleft -= hspd;
-			
-		//if(keys[39]) //rightleft += hspd;
 	
 		if(crane.GetState() == 'down' && state=='resting') {
 			var offset = Math.abs(left - crane.GetLeft()-23);
@@ -91,13 +92,15 @@ function Prize(id,css, crane) {
 		
 		if(state=='falling'||state=='won')
 			top += vspd;
-			
-		//if(id=='0')
-			//console.log(state);
 		
 		if(state=='won' && top > 460) {
-			$('#prize'+id).css({visibility:'hidden'});
+			$('#prize'+id).remove();//css({visibility:'hidden'});
 			state='hidden';
+			//spawn new prize
+			setTimeout(function(){
+				prizes[prizes.length] = new Prize(prizes.length,{top: Math.ceil(Math.random()*100),left: original_left},crane);}
+				,1000);	
+			
 		}
 		
 		CheckBoundaries();
@@ -109,7 +112,3 @@ function Prize(id,css, crane) {
     };
 	
 }
-
-Prize.prototype.GetError = function(offset) {return Math.floor(160/(.1*offset+1)-60);};
-//Prize.prototype.GetError = function(offset) {return Math.floor(100 - 2.5*Math.pow(offset,1.3));};
-//Prize.prototype.GetError = function(offset) {return Math.floor(100 - Math.pow(offset,2)/3);};
