@@ -44,8 +44,11 @@ function Prize(id,css, crane) {
 		var tmp = Math.floor(Math.random()*100);
 		//console.log(tmp,error);
 		if(tmp>error) {
-			setTimeout(function(){state='falling';},4*error+300);
-			$('#debug-streak').html(0); //reset streak		
+			setTimeout(function(){
+				state='falling';
+				$('#debug-streak').html(0); //reset streak	
+			},4*error+300);
+				
 			//console.log('error',100+error*10);
 		 } 
 		 
