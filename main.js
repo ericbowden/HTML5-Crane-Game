@@ -37,6 +37,14 @@ $(document).keydown(function(e){
 	//console.log(key);
 	if(!keys[key])
 		keys[key] = true;
+		
+	if($.inArray(key,[
+		37,39, //left right
+		//38,40, //up down
+		32 //space
+	]) != -1) {
+		e.preventDefault();	
+	}
 });
 
 $(document).keyup(function(e){

@@ -7,8 +7,11 @@ function Prize(id,css, crane) {
 	var error;
 
 	var rand = Math.floor(Math.random()*10);
-	var rand2 = Math.floor(Math.random()*3);
-	var item = ['item.2618.png','item.3122.png','item.6358.png'];
+	var rand2 = Math.floor(Math.random()*8);
+	var item = ['item.2618.png','item.3122.png','item.6358.png',
+		'aurum.png','item.7857.png','item.7868.png','item.7843.png','item.7842.png',
+	
+	];
 	css['background'] = 'url(images/'+item[rand2]+') no-repeat center';
 	var pic = $('<div></div>').attr({'id':'prize'+id,class:'prize-ball'}).css(css);
 	var ball = $('<div></div>').css({height: 60,'background':'url(images/prizeorbs.png) no-repeat -4px -'+62*rand+'px'});
